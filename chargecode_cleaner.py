@@ -10,36 +10,6 @@ home_path = os.getcwd()
 cache_path = home_path+r'\CACHE'
 helper_path = home_path+r'\HELPER_FILES'
 
-# Function name: recent_date
-# Purpose: Pulls date of the latest MSHP public update to the MO Criminal Code  
-# Arguments: Path of Cache folder 
-# Output: Folder path containing the most recent charge code data from MSHP 
-
-def recent_date(path):
-
-	# Initializes Blank List 
-	cache_dates = []
-
-	# Loops through items (folders are labelled by date) in the Cache folder
-	for item in os.listdir(path):
-
-        # Appends dates to list
-		cache_dates.append(item)
-
-	# Removes duplicates and sorts unique values
-    cache_dates = list(set(cache_dates))
-    cache_dates.sort()
-
-	# Grabs the most recent file
-	new_date = cache_dates[-1]
-
-	#Returns that most recent file
-	return new_date
-
-latest_date = recent_date(cache_path)
-
-print(latest_date)
-
 # Function name: 
 # Purpose: 
 # Arguments: 

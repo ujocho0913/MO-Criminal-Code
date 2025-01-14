@@ -34,11 +34,7 @@ def import_mshp(path):
 
     return charge_code, ncic, ncic_mod
 
-charge_code_df, ncic_df, ncic_mod_df = import_mshp(cache_path+"\\"+recent_date(cache_path))
-
-# Define function: 
-
-
-
-dict = zip(df[col1],df[col2])
-df2[new_col] = df2[col].map(dict)
+# Define function: create_dict()
+def create_dict(df, col1, col2):
+    dict = zip(df[col1],df[col2])
+    return dict
