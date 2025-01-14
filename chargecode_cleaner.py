@@ -7,35 +7,38 @@ import os
 
 # Set directories
 home_path = os.getcwd()
-cache_path = home_path+"\\Cache"
+cache_path = home_path+r'\CACHE'
+helper_path = home_path+r'\HELPER_FILES'
 
-# Function name: recentDate
-# Purpose: Prepare 
+# Function name: recent_date
+# Purpose: Pulls date of the latest MSHP public update to the MO Criminal Code  
 # Arguments: Path of Cache folder 
 # Output: Folder path containing the most recent charge code data from MSHP 
 
-def recentDate(path):
+def recent_date(path):
 
-	#Initializes Blank List 
-	allDates = []
+	# Initializes Blank List 
+	cache_dates = []
 
-	#Loops through files in the Cache folder
+	# Loops through items (folders are labelled by date) in the Cache folder
 	for item in os.listdir(path):
 
-        #Appends file names to list
-		allDates.append(item)
+        # Appends dates to list
+		cache_dates.append(item)
 
-	#Removes all the duplicates
-	allDates = list(set(allDates))
+	# Removes duplicates and sorts unique values
+    cache_dates = list(set(cache_dates))
+    cache_dates.sort()
 
-	#Sorts the List without Duplicates
-	allDates.sort()
-
-	#Grabs the most recent file
-	mostRecent = str(allDates[-1])
+	# Grabs the most recent file
+	new_date = cache_dates[-1]
 
 	#Returns that most recent file
-	return mostRecent
+	return new_date
+
+latest_date = recent_date(cache_path)
+
+print(latest_date)
 
 # Function name: 
 # Purpose: 
@@ -85,3 +88,9 @@ dict1.to_csv("test.csv",index=False,encoding='utf-8')
 # Violent Crime 
 # Property Crime 
 # 
+
+# Re-order charge hierarchy
+
+def charge_hierarchy(df):
+    # Order by - Sev, Class, Count
+    # Is re-arranged lead count = original lead count? If yes, 1; if no, 0 (what is original lead count Sev-Class?)
