@@ -34,7 +34,3 @@ def import_mshp(path):
 
     return charge_code, ncic, ncic_mod
 
-# Define function: create_dict()
-def create_dict(df, col1, col2):
-    dict = zip(df[col1],df[col2])
-    return dict
