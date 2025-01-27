@@ -3,7 +3,7 @@ import pandas as pd
 
 from helper_functions import recent_date, import_mshp
 
-# Set directories 
+# Set directories
 home_path = os.getcwd()
 cache_path = home_path+r'\CACHE'
 helper_path = home_path+r'\HELPER_FILES'
@@ -14,14 +14,15 @@ charge_code_df, ncic_df, ncic_mod_df = import_mshp(cache_path+"\\"+recent_date(c
 
 # Create dict_01: NCIC Categories and Code (ncic_df)
 ncic_df = ncic_df[['NCIC Category','Category Description']].drop_duplicates(ignore_index=True)
+# ncic_df.to_csv(helper_path+r'\NCIC Category.csv', encoding='utf-8', index=False) # one-time
 ncic_dict = dict(zip(ncic_df['NCIC Category'], ncic_df['Category Description']))
 
 """
 Charge Type: "F" Felony, "M" Misdemeanor, "I" Infraction, "L" Local Ordinance, "U" Unknown
+* Charge Type: "A" (Admin?) and "U" account for 7 and 2 unique Charge Codes, respectively. They also all have Legacy Charge Codes. 
+I suspect these aren't ever charged in Jackson County, so we will remove.
 Classification: A, B, C, D, U (added Aug 2015; ACA)
-
 """
-x = charge_code_df[charge_code_df['Charge Type']=='A']
 
 # Charge Code Severity and Class Hierarchy 
 charge_hierarchy = charge_code_df[['Charge Type', 'Classification']].drop_duplicates(ignore_index=True).sort_values(by=['Charge Type', 'Classification'])

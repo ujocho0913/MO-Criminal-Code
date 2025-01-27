@@ -10,7 +10,7 @@ helper_path = home_path+r'\HELPER_FILES'
 def recent_date(path):
     cache_dates = []
     for item in os.listdir(path):
-        cache_dates.append(item)
+        cache_dates.append(item) # file names as strings
 
     cache_dates = list(set(cache_dates))
     cache_dates.sort()
